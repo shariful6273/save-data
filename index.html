@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" id="sheetdb-form"
+    action="https://docs.google.com/spreadsheets/d/1A33192PYAfhA4JytBfW5tOVt7l-I2nnY5twA-SJneTQ">
+      ID: <input name="data[id]">
+      Name: <input name="data[name]">
+      Age: <input name="data[age]">
+      <button type="submit">Submit</button>
+  </form>
+  
+  <script>
+    var form = document.getElementById('sheetdb-form');
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(form.action, {
+          method : "POST",
+          body: new FormData(document.getElementById("sheetdb-form")),
+      }).then(
+          response => response.json()
+      ).then((html) => {
+        // you can put any JS code here
+        alert('success')
+      });
+    });
+  </script>
+</body>
+</html>
